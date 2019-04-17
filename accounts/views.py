@@ -7,10 +7,10 @@ from django.db import IntegrityError
 from django.core.exceptions import PermissionDenied
 from django.core import serializers
 from json import dumps
-
+from django.template import loader
 
 from .forms import SigninForm, SignupForm
-
+from finances.models import Account
 
 # Create your views here.
 def sign_in(request):
@@ -65,5 +65,15 @@ def sign_up(request):
 def sign_out(request):
     if request.user.is_authenticated:
         logout(request)
-    # return HttpResponseRedirect('/')
     return redirect('/')
+
+
+def details(request):
+    if not request.user.is_authenticated:
+        raise PermissionDenied
+
+    accounts = Account.objects.filter(author=request.user)
+
+    template = loader.get_template('accounts/details.html')
+    context = {'accounts': accounts}
+    return HttpResponse(template.render(context, request))

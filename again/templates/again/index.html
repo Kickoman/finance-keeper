@@ -31,7 +31,7 @@
             <h3>
                 Technical information.
             </h3>
-            <p>Current user is {{ user }}.</p>
+            <p>Current user is <a href="{% url 'accounts:details' %}" >{{ user }}</a></p>
             <p>Press
             <a href="accounts/logout">here</a>
                 to log out.

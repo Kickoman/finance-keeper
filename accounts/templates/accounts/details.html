@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ request.user }} details</title>
+</head>
+<body>
+    <div class="nav">
+        <p>
+            <a href="/">Main page</a>
+        </p>
+    </div>
+    <h1>{{ request.user }}</h1>
+
+    <h3>Connected accounts:</h3>
+    <ul>
+        {% for a in accounts %}
+            <li>{{ a.name }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
