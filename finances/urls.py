@@ -6,7 +6,7 @@ app_name = 'finances'
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('list', views.list_transactions, name='list'),
-    path('add_transaction', views.add_transaction, name='addtr'),
-    path('submission', views.submission, name='submission'),
+    path('list/', views.list_transactions, name='list'),
+    path('add_transaction/', views.add_transaction, name='addtr'),
+    path('submission/', views.submission, name='submission'),
 ]
