@@ -15,5 +15,28 @@
     <p>
         You can <a href="accounts/sign_in/">log in</a> now if you have an account.
     </p>
+
+    <p>
+        If you don't have an account, you should
+        <a href="{% url 'accounts:sign_up' %}">register</a>.
+    </p>
+
+    <p>
+        Visual editing is accessible through
+        <a href="admin/">admin panel</a>.
+    </p>
+
+    {% if user.is_authenticated %}
+        <dev class="tech-info">
+            <h3>
+                Technical information.
+            </h3>
+            <p>Current user is {{ user }}.</p>
+            <p>Press
+            <a href="accounts/logout">here</a>
+                to log out.
+            </p>
+        </dev>
+    {% endif %}
 </body>
 </html>

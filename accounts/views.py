@@ -34,3 +34,36 @@ def sign_in(request):
     else:
         form = SigninForm()
     return render(request, 'accounts/sign_in.html', {'form': form})
+
+
+def sign_up(request):
+    if request.user.is_authenticated:
+        return HttpResponseRedirect('/')
+
+    if request.method == 'POST':
+        form = SignupForm(request.POST)
+        if form.is_valid():
+            username = request.POST['username']
+            password = request.POST['password']
+
+            try:
+                user = User.objects.create_user(
+                    username=username,
+                    password=password
+                )
+                user.save()
+                return redirect('accounts:sign_in')
+            except IntegrityError: # someone registered before with ur name
+                messages.add_message(request, messages.ERROR, 'Database error, try once again')
+        else:
+            messages.add_message(request, messages.INFO, "Form is invalid")
+    else:
+        form = SignupForm()
+    return render(request, 'accounts/sign_up.html', {'form': form})
+
+
+def sign_out(request):
+    if request.user.is_authenticated:
+        logout(request)
+    # return HttpResponseRedirect('/')
+    return redirect('/')

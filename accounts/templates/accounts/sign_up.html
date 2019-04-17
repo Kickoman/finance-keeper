@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration</title>
+</head>
+<body>
+    <div class="content">
+        <h2>Registration</h2>
+
+        {% if messages %}
+            {% for message in messages %}
+                <div class="{{ message.tags }}">
+                    <h4>INFO:</h4>
+                    <p>
+                        {{ message }}
+                    </p>
+                </div>
+            {% endfor %}
+        {% endif %}
+
+
+        {% if form.non_field_errors %}
+            {% for error in form.non_field_errors %}
+                <div class="alert">
+                    <h4>ERROR:</h4>
+                    <p>
+                        {{ error }}
+                    </p>
+                </div>
+            {% endfor %}
+        {% endif %}
+
+
+        <form method="post" class="form">
+            {% csrf_token %}
+            {% for field in form %}
+
+                {% if field.errors %}
+                    {% for error in field.errors %}
+                        <div class="alert">
+                            {{ error|escape }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+                {{ field.label_tag }}
+                <br>
+                {{ field }}
+                <br>
+                <br>
+            {% endfor %}
+
+            <button type="submit">
+                Sign up
+            </button>
+        </form>
+    </div>
+</body>
+</html>
