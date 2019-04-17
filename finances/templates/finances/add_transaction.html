@@ -5,19 +5,72 @@
     <title>Adding new transaction</title>
 </head>
 <body>
+    <div class="nav">
+        <p>
+            <a href="/">Main page</a>
+        </p>
+    </div>
+
     <h1>NEW TRANSACTION</h1>
-    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-    <form action="{% url 'submission'%}" method="post">
-        {% csrf_token %}
-        <label for="trname">Name: </label>
-        <input type="text" name="name" id="trname"> <br>
-        <label for="trdate">Date: </label>
-        <input type="date" name="date" id="trdate"><br>
-        <label for="trtype">That's income: </label>
-        <input type="checkbox" name="type" id="trtype"><br>
+        {% if messages %}
+            {% for message in messages %}
+                <div class="{{ message.tags }}">
+                    <h4>INFO:</h4>
+                    <p>
+                        {{ message }}
+                    </p>
+                </div>
+            {% endfor %}
+        {% endif %}
+
+
+        {% if form.non_field_errors %}
+            {% for error in form.non_field_errors %}
+                <div class="alert">
+                    <h4>ERROR:</h4>
+                    <p>
+                        {{ error }}
+                    </p>
+                </div>
+            {% endfor %}
+        {% endif %}
+
+
+        <form method="post" class="form">
+            {% csrf_token %}
+            {% for field in form %}
+
+                {% if field.errors %}
+                    {% for error in field.errors %}
+                        <div class="alert">
+                            {{ error|escape }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+                {{ field.label_tag }}
+                <br>
+                {{ field }}
+                <br>
+                <br>
+            {% endfor %}
+
+            <button type="submit">
+                Add transaction
+            </button>
+        </form>
+{#    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}#}
+{#    <form action="{% url 'submission'%}" method="post">#}
+{#        {% csrf_token %}#}
+{#        <label for="trname">Name: </label>#}
+{#        <input type="text" name="name" id="trname"> <br>#}
+{#        <label for="trdate">Date: </label>#}
+{#        <input type="date" name="date" id="trdate"><br>#}
+{#        <label for="trtype">That's income: </label>#}
+{#        <input type="checkbox" name="type" id="trtype"><br>#}
 {#        <input type="cat_id" name#}
-        <button type="submit">Submit everything</button><br>
-    </form>
+{#        <button type="submit">Submit everything</button><br>#}
+{#    </form>#}
 </body>
 </html>
 

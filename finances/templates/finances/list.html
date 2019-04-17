@@ -33,7 +33,11 @@
             </thead>
             <tbody>
             {% for t in transactions %}
+                {% if 'highlight' in request.GET and request.GET.highlight|add:0 == t.id %}
+                <tr bgcolor="#ffe4c4">
+                {% else %}
                 <tr>
+                {% endif %}
                     <td>
                         {{ t.id }}
                     </td>
@@ -68,5 +72,10 @@
     {% else %}
         <p>No transactions.</p>
     {% endif %}
+
+    <h3>Technical information</h3>
+    <p>
+         Request parameters: {{ request.GET }}
+    </p>
 </body>
 </html>

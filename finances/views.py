@@ -1,9 +1,11 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from django.core.exceptions import PermissionDenied
+from django.contrib import messages
 
 from .models import Transaction
+from .forms import TransactionForm
 
 # Create your views here.
 
@@ -29,8 +31,24 @@ def list(request):
 
 
 def add_transaction(request):
-    template = loader.get_template('finances/add_transaction.html')
-    return HttpResponse(template.render({}, request))
+    # template = loader.get_template('finances/add_transaction.html')
+
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect('/')
+
+    if request.method == 'POST':
+        form = TransactionForm(request.POST)
+        if form.is_valid():
+            # object = Transaction(form.cleaned_data)
+            # object.save()
+            object = form.save(commit=False)
+            object.author = request.user
+            object.save()
+            form.save_m2m()
+            return HttpResponseRedirect('/finances/list?highlight=' + str(object.pk))
+    else:
+        form = TransactionForm()
+    return render(request, 'finances/add_transaction.html', {'form': form})
 
 
 def submission(request):
