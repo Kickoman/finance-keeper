@@ -7,12 +7,8 @@ from django.contrib import messages
 from .models import Transaction
 from .forms import TransactionForm
 
+
 # Create your views here.
-
-# TODO: read this:
-# Well, user authentication system has been added
-# Now it's time to add transaction system
-
 def index(request):
     return HttpResponse('Hi there! Finance application is here.')
 
@@ -31,23 +27,19 @@ def list(request):
 
 
 def add_transaction(request):
-    # template = loader.get_template('finances/add_transaction.html')
-
     if not request.user.is_authenticated:
         return HttpResponseRedirect('/')
 
     if request.method == 'POST':
-        form = TransactionForm(request.POST)
+        form = TransactionForm(request.POST, request.user)
         if form.is_valid():
-            # object = Transaction(form.cleaned_data)
-            # object.save()
             object = form.save(commit=False)
             object.author = request.user
             object.save()
             form.save_m2m()
             return HttpResponseRedirect('/finances/list?highlight=' + str(object.pk))
     else:
-        form = TransactionForm()
+        form = TransactionForm(request.user)
     return render(request, 'finances/add_transaction.html', {'form': form})
 
 
