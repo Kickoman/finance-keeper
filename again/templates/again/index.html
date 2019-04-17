@@ -13,7 +13,7 @@
     </p>
 
     <p>
-        You can <a href="accounts/sign_in/">log in</a> now if you have an account.
+        You can <a href="{% url 'accounts:sign_in' %}">log in</a> now if you have an account.
     </p>
 
     <p>
@@ -33,14 +33,14 @@
             </h3>
             <p>Current user is <a href="{% url 'accounts:details' %}" >{{ user }}</a></p>
             <p>Press
-            <a href="accounts/logout">here</a>
+            <a href="{% url 'accounts:logout' %}">here</a>
                 to log out.
             </p>
 
             <h3>Useful links</h3>
             <ul>
-                <li><a href="finances/list">List of all completed transactions</a> </li>
-                <li><a href="finances/add_transaction">Add new transaction</a> </li>
+                <li><a href="{% url 'finances:list' %}">List of all completed transactions</a> </li>
+                <li><a href="{% url 'finances:addtr' %}">Add new transaction</a> </li>
             </ul>
         </dev>
     {% endif %}
