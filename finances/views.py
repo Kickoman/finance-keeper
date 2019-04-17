@@ -13,7 +13,7 @@ def index(request):
     return HttpResponse('Hi there! Finance application is here.')
 
 
-def list(request):
+def list_transactions(request):
     user = request.user
     if not user.is_authenticated:
         raise PermissionDenied()
