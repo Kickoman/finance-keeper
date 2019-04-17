@@ -4,15 +4,34 @@
     <meta charset="UTF-8">
     <title>List of all completed transactions</title>
     <style>
-        table, td {
+        table, td, th {
             border: 1px solid black;
             border-collapse: collapse;
         }
     </style>
 </head>
 <body>
+    <div class="nav">
+        <p>
+            <a href="/">Main page</a>
+        </p>
+    </div>
     {% if transactions %}
-        <table>
+        <table width="1000px">
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>Name</th>
+                    <th>Date</th>
+                    <th>Type</th>
+                    <th>Category</th>
+                    <th>Author</th>
+                    <th>Cost</th>
+                    <th>Amount</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
             {% for t in transactions %}
                 <tr>
                     <td>
@@ -22,14 +41,32 @@
                         {{ t.name }}
                     </td>
                     <td>
-                        {{ t.comment }}
+                        {{ t.date }}
+                    </td>
+                    <td>
+                        {{ t.type }}
+                    </td>
+                    <td>
+                        {{ t.category }}
+                    </td>
+                    <td>
+                        {{ t.author }}
                     </td>
                     <td>
                         {{ t.cost }}
                     </td>
+                    <td>
+                        {{ t.amount }}
+                    </td>
+                    <td>
+                        {{ t.description }}
+                    </td>
                 </tr>
             {% endfor %}
+            </tbody>
         </table>
+    {% else %}
+        <p>No transactions.</p>
     {% endif %}
 </body>
 </html>

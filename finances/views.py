@@ -1,19 +1,27 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import loader
+from django.core.exceptions import PermissionDenied
 
 from .models import Transaction
 
 # Create your views here.
+
+# TODO: read this:
+# Well, user authentication system has been added
+# Now it's time to add transaction system
 
 def index(request):
     return HttpResponse('Hi there! Finance application is here.')
 
 
 def list(request):
+    user = request.user
+    if not user.is_authenticated:
+        raise PermissionDenied()
+
     transactions = Transaction.objects.order_by('-date')
     template = loader.get_template('finances/list.html')
-    # output =  ', '.join([q.name for q in transactions])
     context = {
         'transactions' : transactions,
     }
