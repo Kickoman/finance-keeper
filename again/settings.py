@@ -76,15 +76,15 @@ WSGI_APPLICATION = 'again.wsgi.application'
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
+    'tmp': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     },
-    'fkdb' : {
+    'default' : {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'finance_keeper',
-        'USER': 'root',
-        'PASSWORD': 'i36lv95ct48grls!?',
+        'NAME': 'django_fkeeper',
+        'USER': 'django',
+        'PASSWORD': 'djangopasswd',
         'HOST': 'localhost',
     }
 }
