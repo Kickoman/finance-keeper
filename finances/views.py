@@ -50,7 +50,7 @@ def add_transaction(request):
     ).order_by('-date')
 
     if all_transactions:
-        latest_used_account = all_transactions[0].pk
+        latest_used_account = all_transactions[0].account.pk
         form.initial = {'account': latest_used_account}
 
     return render(request, 'finances/add_transaction.html', {'form': form})
