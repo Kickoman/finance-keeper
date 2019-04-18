@@ -10,7 +10,9 @@ from json import dumps
 from django.template import loader
 
 from .forms import SigninForm, SignupForm
-from finances.models import Account
+from finances.models import Account, Transaction
+
+from decimal import Decimal
 
 # Create your views here.
 def sign_in(request):
@@ -72,8 +74,22 @@ def details(request):
     if not request.user.is_authenticated:
         raise PermissionDenied
 
+
+    current_balance = Decimal(0)
+    all_transactions = Transaction.objects.filter(
+        author=request.user
+    )
+    for t in all_transactions:
+        if t.type:
+            current_balance += t.cost * t.amount
+        else:
+            current_balance -= t.cost * t.amount
+
     accounts = Account.objects.filter(author=request.user)
 
     template = loader.get_template('accounts/details.html')
-    context = {'accounts': accounts}
+    context = {
+        'accounts': accounts,
+        'balance': current_balance
+    }
     return HttpResponse(template.render(context, request))
