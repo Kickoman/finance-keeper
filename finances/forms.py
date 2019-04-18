@@ -20,6 +20,12 @@ class TransactionForm(ModelForm):
             'description'
         ]
 
-    def __init__(self, user, *args, **kwargs):
-        super(TransactionForm, self).__init__(*args, **kwargs)
-        self.fields['account'].queryset = Account.objects.filter(author=user)
+    # def __init__(self, user, *args, **kwargs):
+    #     super(TransactionForm, self).__init__(*args, **kwargs)
+        # self.fields['account'].queryset = Account.objects.filter(author=user)
+
+
+class AccountForm(ModelForm):
+    class Meta:
+        model = Account
+        fields = ['name']
