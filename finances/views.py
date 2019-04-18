@@ -31,7 +31,6 @@ def add_transaction(request):
         return HttpResponseRedirect('/')
 
     if request.method == 'POST':
-        # form = TransactionForm(request.POST, request.user)
         form = TransactionForm(request.POST)
         if form.is_valid():
             object = form.save(commit=False)
@@ -40,9 +39,20 @@ def add_transaction(request):
             form.save_m2m()
             return HttpResponseRedirect('/finances/list?highlight=' + str(object.pk))
     else:
-        # form = TransactionForm(request.user)
         form = TransactionForm()
+
+    # Populating set of values only with allowed items (accounts of current user)
     form.fields['account'].queryset = Account.objects.filter(author=request.user)
+
+    # Setting default value as latest used
+    all_transactions = Transaction.objects.filter(
+        author=request.user
+    ).order_by('-date')
+
+    if all_transactions:
+        latest_used_account = all_transactions[0].pk
+        form.initial = {'account': latest_used_account}
+
     return render(request, 'finances/add_transaction.html', {'form': form})
 
 
