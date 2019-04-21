@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ request.user }} details</title>
-</head>
-<body>
+{% extends 'again/base.html' %}
+{% block title %}{{ request.user }}'s details{% endblock %}
+{% block content %}
     <div class="nav">
         <p>
             <a href="/">Main page</a>
@@ -13,10 +9,19 @@
     <h1>{{ request.user }}</h1>
     <h3>Current balance: {{ balance }} BYN</h3>
     <h3>Connected accounts:</h3>
-    <ul>
-        {% for a in accounts %}
-            <li>{{ a.name }}</li>
-        {% endfor %}
-    </ul>
-</body>
-</html>
+        <table>
+            <thead></thead>
+            <tbody>
+            {% for a in accounts %}
+                <tr>
+                    <td>
+                        {{ a.name }}
+                    </td>
+                    <td>
+                        {{ a.balance }}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+{% endblock %}

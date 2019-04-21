@@ -14,6 +14,7 @@ from finances.models import Account, Transaction
 
 from decimal import Decimal
 
+
 # Create your views here.
 def sign_in(request):
     if request.user.is_authenticated:
@@ -73,7 +74,6 @@ def sign_out(request):
 def details(request):
     if not request.user.is_authenticated:
         raise PermissionDenied
-
 
     current_balance = Decimal(0)
     all_transactions = Transaction.objects.filter(

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>{% block title %}Finance Keeper{% endblock %}</title>
+    <link type="text/css" rel="stylesheet" href="{% static "base/base.css" %}"
+    {% block css %}
+    {% endblock %}
+
+    {% block js %}
+    {% endblock %}
+</head>
+<body>
+    {% block content %}
+
+    {% endblock %}
+</body>
+</html>

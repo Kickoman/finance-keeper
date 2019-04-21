@@ -1,16 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>List of all completed transactions</title>
-    <style>
-        table, td, th {
-            border: 1px solid black;
-            border-collapse: collapse;
-        }
-    </style>
-</head>
-<body>
+{% extends 'again/base.html' %}
+
+{% block title %}List of all completed transactions{% endblock %}
+
+{% block content %}
     <div class="nav">
         <p>
             <a href="{% url 'index' %}">Main page</a>
@@ -77,5 +69,4 @@
     <p>
          Request parameters: {{ request.GET }}
     </p>
-</body>
-</html>
+{% endblock %}

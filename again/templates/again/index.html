@@ -1,10 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Finance Keeper</title>
-</head>
-<body>
+{% extends 'again/base.html' %}
+{% block content %}
     <h1>Finance Keeper</h1>
     <p>
         You can do everything you want, even if you want to keep all your
@@ -27,7 +22,7 @@
     </p>
 
     {% if user.is_authenticated %}
-        <dev class="tech-info">
+        <div class="tech-info">
             <h3>
                 Technical information.
             </h3>
@@ -43,7 +38,6 @@
                 <li><a href="{% url 'finances:addtr' %}">Add new transaction</a> </li>
                 <li><a href="{% url 'finances:addac' %}">Add new account</a></li>
             </ul>
-        </dev>
+        </div>
     {% endif %}
-</body>
-</html>
+{% endblock %}
