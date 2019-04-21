@@ -10,15 +10,24 @@
     <h3>Current balance: {{ balance }} BYN</h3>
     <h3>Connected accounts:</h3>
         <table>
-            <thead></thead>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Current balance</th>
+                </tr>
+            </thead>
             <tbody>
             {% for a in accounts %}
                 <tr>
                     <td>
+                        {{ forloop.counter }}
+                    </td>
+                    <td>
                         {{ a.name }}
                     </td>
                     <td>
-                        {{ a.balance }}
+                        {{ a.balance }} BYN
                     </td>
                 </tr>
             {% endfor %}

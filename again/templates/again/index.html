@@ -1,43 +1,48 @@
 {% extends 'again/base.html' %}
+
 {% block content %}
     <h1>Finance Keeper</h1>
-    <p>
-        You can do everything you want, even if you want to keep all your
-        financial operations in one place. But to proceed using this
-        application for organizing your budget, please, register right now.
-    </p>
-
-    <p>
-        You can <a href="{% url 'accounts:sign_in' %}">log in</a> now if you have an account.
-    </p>
-
-    <p>
-        If you don't have an account, you should
-        <a href="{% url 'accounts:sign_up' %}">register</a>.
-    </p>
-
-    <p>
-        Visual editing is accessible through
-        <a href="admin/">admin panel</a>.
-    </p>
 
     {% if user.is_authenticated %}
+        <p>
+            Welcome here, {{ user }}!
+        </p>
+
+        {% if user.is_staff %}
+            <p>
+                Visual editing is accessible through
+                <a href="admin/">admin panel</a>.
+            </p>
+        {% endif %}
+
         <div class="tech-info">
             <h3>
                 Technical information.
             </h3>
-            <p>Current user is <a href="{% url 'accounts:details' %}" >{{ user }}</a></p>
+            <p>Current user is <a href="{% url 'accounts:details' %}">{{ user }}</a></p>
             <p>Press
-            <a href="{% url 'accounts:logout' %}">here</a>
+                <a href="{% url 'accounts:logout' %}">here</a>
                 to log out.
             </p>
 
             <h3>Useful links</h3>
             <ul>
-                <li><a href="{% url 'finances:list' %}">List of all completed transactions</a> </li>
-                <li><a href="{% url 'finances:addtr' %}">Add new transaction</a> </li>
+                <li><a href="{% url 'finances:list' %}">List of all completed transactions</a></li>
+                <li><a href="{% url 'finances:addtr' %}">Add new transaction</a></li>
                 <li><a href="{% url 'finances:addac' %}">Add new account</a></li>
             </ul>
         </div>
+
+
+    {% else %}
+        <p>
+            You can <a href="{% url 'accounts:sign_in' %}">log in</a> now if you have an account.
+        </p>
+
+        <p>
+            If you don't have an account, you should
+            <a href="{% url 'accounts:sign_up' %}">register</a>.
+        </p>
+
     {% endif %}
 {% endblock %}
