@@ -8,51 +8,94 @@
     </div>
 
     <h1>New transaction</h1>
-        {% if messages %}
-            {% for message in messages %}
-                <div class="{{ message.tags }}">
-                    <h4>INFO:</h4>
-                    <p>
-                        {{ message }}
-                    </p>
-                </div>
+    {% if messages %}
+        {% for message in messages %}
+            <div class="{{ message.tags }}">
+                <h4>INFO:</h4>
+                <p>
+                    {{ message }}
+                </p>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+
+    {% if form.non_field_errors %}
+        {% for error in form.non_field_errors %}
+            <div class="alert">
+                <h4>ERROR:</h4>
+                <p>
+                    {{ error }}
+                </p>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+
+    <form method="post" class="form">
+        {% csrf_token %}
+        {% for field in form %}
+
+            {% if field.errors %}
+                {% for error in field.errors %}
+                    <div class="alert">
+                        {{ error|escape }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+            {{ field.label_tag }}
+            <br>
+            {{ field }}
+            <br>
+            <br>
+        {% endfor %}
+
+        <button type="submit">
+            Add transaction
+        </button>
+    </form>
+{% endblock %}
+
+{% block js %}
+    <script>
+        var incomeCategories = [];
+        var expenseCategories = [];
+
+
+        function toggleVisibleCategories() {
+            var categories = document.getElementById("id_category").children;
+            var userValue = document.getElementById("id_type").checked;
+
+            for (var i = 0; i < categories.length; i++) {
+                var category = categories[i], value = parseInt(category.value, 10);
+
+                category.hidden = (!userValue && incomeCategories.includes(value)) ||
+                    (userValue && expenseCategories.includes(value));
+            }
+        }
+
+        docReady(function () {
+            {% for cat in incomes %}
+                incomeCategories.push(
+                    {{ cat.pk }}
+                );
             {% endfor %}
-        {% endif %}
 
-
-        {% if form.non_field_errors %}
-            {% for error in form.non_field_errors %}
-                <div class="alert">
-                    <h4>ERROR:</h4>
-                    <p>
-                        {{ error }}
-                    </p>
-                </div>
-            {% endfor %}
-        {% endif %}
-
-
-        <form method="post" class="form">
-            {% csrf_token %}
-            {% for field in form %}
-
-                {% if field.errors %}
-                    {% for error in field.errors %}
-                        <div class="alert">
-                            {{ error|escape }}
-                        </div>
-                    {% endfor %}
-                {% endif %}
-
-                {{ field.label_tag }}
-                <br>
-                {{ field }}
-                <br>
-                <br>
+            {% for cat in expenses %}
+                expenseCategories.push(
+                    {{ cat.pk }}
+                );
             {% endfor %}
 
-            <button type="submit">
-                Add transaction
-            </button>
-        </form>
+
+            document.getElementById("id_type").onclick = function () {
+                toggleVisibleCategories();
+            };
+
+            toggleVisibleCategories();
+        });
+
+
+    </script>
 {% endblock %}

@@ -4,7 +4,7 @@ from django.template import loader
 from django.core.exceptions import PermissionDenied
 from django.contrib import messages
 
-from .models import Transaction, Account
+from .models import Transaction, Account, Category
 from .forms import TransactionForm, AccountForm
 
 
@@ -53,7 +53,20 @@ def add_transaction(request):
         latest_used_account = all_transactions[0].account.pk
         form.initial = {'account': latest_used_account}
 
-    return render(request, 'finances/add_transaction.html', {'form': form})
+    # Lists of categories divided by their type
+    # It's necessary for disabling items
+    income_categories = Category.objects.filter(type=1)
+    expense_categories = Category.objects.filter(type=0)
+
+    return render(
+        request,
+        'finances/add_transaction.html',
+        {
+            'form': form,
+            'incomes': income_categories,
+            'expenses': expense_categories,
+        }
+    )
 
 
 def add_account(request):
