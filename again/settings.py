@@ -84,8 +84,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'django_fkeeper',
         'USER': 'django',
-        'PASSWORD': 'djangopassword',
-        'HOST': '192.168.1.55',
+        'PASSWORD': 'djangopasswd',
+        'HOST': 'localhost',
     }
 }
 
