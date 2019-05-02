@@ -35,14 +35,33 @@
 
 
     {% else %}
-        <p>
-            You can <a href="{% url 'accounts:sign_in' %}">log in</a> now if you have an account.
-        </p>
+         <div class="split split_left">
+                <div class = "authors">
+                    <p>Made by:</p>
+                </div>
+                
 
-        <p>
-            If you don't have an account, you should
-            <a href="{% url 'accounts:sign_up' %}">register</a>.
-        </p>
+        </div>
+
+        <div class="split split_right">
+            <section class = "auth">
+                <form method="post" action="{% url 'accounts:sign_in' %}">
+                    {% csrf_token %}
+                    <input id="usrn" type="text" name="username" placeholder="USERNAME">
+                    <br>
+                    <br>
+
+                    <input id="pw" type="password" name="password" placeholder="PASSWORD">
+                    <br>
+                    <br>
+                    <input id="sb" type="submit" value="Sign in">
+                </form>
+
+                <p>Create an account <a href="{% url 'accounts:sign_up' %}">Sign up</a></p>
+
+                    
+            </section>
+        
 
     {% endif %}
 {% endblock %}
