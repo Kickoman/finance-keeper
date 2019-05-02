@@ -6,3 +6,64 @@ table, td, th {
 table {
     width: 50%;
 }
+
+.split_left{
+
+	/*background-image: url('')*/
+
+	background-color: white;
+	width: 64%;
+	left:0;
+}
+
+.split_right{
+
+	
+	background-color: black;
+	width:36%;
+	left:64%;
+}
+
+.split{
+	
+	height: 100%;
+	position: fixed;
+	top: 0;
+	overflow-x: hidden;
+
+}
+
+.auth{
+	
+	margin-top: 28%;
+	margin-right: 15%;
+	margin-left: 15%;
+	position: relative;
+	height:200px;
+	/*background-color: white;	*/
+	padding: 50px;
+	text-align: center;
+
+
+}
+.auth p{
+	font-size: 15px;
+	color: white;
+
+}
+
+.authors {
+	position: fixed;
+	margin-top: 95%;
+	margin-left: 1%;
+	width: 15%;
+	height: 8%;
+	left: 0;
+	bottom: 1%;
+	
+	
+}
+.authors  p{
+	color: black;
+}
+
