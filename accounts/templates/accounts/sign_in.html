@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Sign in</title>
-</head>
-<body>
+{% extends 'again/base.html' %}
+{%block title%}Sign in{%endblock%}
+{% block content %}
     <div class="content">
         <h2>Authorized access only!</h2>
 
@@ -56,5 +52,6 @@
             </button>
         </form>
     </div>
-</body>
-</html>
+{% endblock %}
+
+
