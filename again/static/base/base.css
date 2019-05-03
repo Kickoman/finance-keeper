@@ -38,10 +38,10 @@ table {
 .auth{
 	
 	margin-top: 28%;
-	margin-right: 15%;
-	margin-left: 15%;
+	/*margin-right: 15%;*/
+	/*margin-left: 15%;*/
 	position: relative;
-	height:200px;
+	height:30%;
 	/*background-color: white;	*/
 	padding: 50px;
 	text-align: center;
@@ -54,6 +54,14 @@ table {
 
 }
 
+.auth input 
+{
+	width: 40%;
+}
+.auth button{
+	width: 25%;
+	min-width: 98px;
+}
 .authors {
 	position: fixed;
 	margin-bottom: 2%;
@@ -66,7 +74,7 @@ table {
 	
 }
 .authors  p{
-	color: black;
+	color: white;
 	margin: 5px 5px;
 }
 
@@ -84,4 +92,5 @@ table {
 	font-size: 300%;
 	top: 50%;
 	transform: translateY(-50%);
+	color: white;
 }
