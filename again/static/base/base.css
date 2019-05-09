@@ -79,8 +79,8 @@ table {
 }
 
 .header{
-	/*background-color: gray;*/
-	left: 10%;
+	background-color: rgba(255,255,255,0.2);
+	left: 0;
 	top: 10%;
 	width: 100%;
 	height: 10%;
@@ -91,6 +91,7 @@ table {
 	position: relative;
 	font-size: 300%;
 	top: 50%;
+	left: 10%;
 	transform: translateY(-50%);
 	color: white;
 }
