@@ -1,0 +1,63 @@
+{% extends 'again/base.html' %}
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+
+    <div class="header">
+        <h1>Dashboard</h1>
+        <h3>for {{ request.user }}</h3>
+    </div>
+
+    <div class="tables"> {# TODO: check class naming #}
+        <span>Your balance for the last month is {{ sum_for_month }}.</span>
+        <span>
+            {% if sum_for_month > 0 %}
+                Well done, my friend!
+            {% else %}
+                It seems, you're falling in debts. Maybe you should <a href="mailto:kickoman@yandex.by">ask for a help</a>?
+            {% endif %}
+        </span>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Category</th>
+                    <th>Cost</th>
+                    <th>Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for x in tr_history %}
+                    <tr>
+                        <td> {# Date #}
+                            {{ x.date }}
+                        </td>
+                        <td> {# Type #}
+                            {% if x.type %}
+                                Income
+                            {% else %}
+                                Expense
+                            {% endif %}
+                        </td>
+                        <td> {# Name #}
+                            {{ x.name }}
+                        </td>
+                        <td> {# Category #}
+                            {{ x.category }}
+                        </td>
+                        <td> {# Cost #}
+                            {{ x.cost }}
+                        </td>
+                        <td> {# Amount #} {# TODO: replace cost & amount columns with the only one #}
+                            {{ x.amount }}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}

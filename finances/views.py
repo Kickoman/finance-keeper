@@ -7,6 +7,8 @@ from django.contrib import messages
 from .models import Transaction, Account, Category
 from .forms import TransactionForm, AccountForm
 
+import datetime
+import decimal
 
 # Create your views here.
 def index(request):
@@ -84,3 +86,29 @@ def add_account(request):
     else:
         form = AccountForm()
     return render(request, 'finances/add_account.html', {'form': form})
+
+
+def dashboard(request):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect('/')
+
+    transactionsLastMonth = Transaction.objects.filter(
+        date__range=[
+            datetime.datetime.now() - datetime.timedelta(days=31),
+            datetime.datetime.now()
+        ],
+        author=request.user
+    )
+
+    sum_last_month = decimal.Decimal(0)
+    for x in transactionsLastMonth:
+        sum_last_month += x.cost * x.amount * (1 if x.type else -1)
+
+    return render(
+        request,
+        'finances/dashboard.html',
+        {
+            'tr_history': transactionsLastMonth,
+            'sum_for_month': sum_last_month
+        }
+    )

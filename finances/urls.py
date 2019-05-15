@@ -9,4 +9,5 @@ urlpatterns = [
     path('list/', views.list_transactions, name='list'),
     path('add_transaction/', views.add_transaction, name='addtr'),
     path('add_account/', views.add_account, name='addac'),
+    path('dashboard/', views.dashboard, name='dashboard'),
 ]
