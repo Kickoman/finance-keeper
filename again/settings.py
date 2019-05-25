@@ -76,19 +76,25 @@ WSGI_APPLICATION = 'again.wsgi.application'
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
 DATABASES = {
-    'tmp': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    },
     'default' : {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'django_fkeeper',
         'USER': 'django',
-        'PASSWORD': 'djangopassword',
-        'HOST': '192.168.1.55',
+        'PASSWORD': 'djangopasswd',
+        'HOST': '157.230.127.205', # Deployment server
+    },
+    'tmp': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    },
+    'local' : {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'django_fkeeper',
+        'USER': 'django',
+        'PASSWORD': 'djangopasswd',
+        'HOST': 'localhost',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators

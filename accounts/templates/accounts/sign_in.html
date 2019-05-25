@@ -1,62 +1,71 @@
 {% extends 'again/base.html' %}
 {%block title%}Sign in{%endblock%}
+{% load static %}
+{% block css %}
+    <link type="text/css" rel="stylesheet" href="{% static "accounts/sign_in.css" %}">
+{% endblock %}
 {% block content %}
-    <div class="center">
-
-        
+    <div class="lowheader">
+        <p>Finance Keeper</p>
     </div>
+        <div class="access">
 
-    <div class="content">
-        <h2>Authorized access only!</h2>
+            <div class="content">
+                <h2>Sign in</h2>
 
-        {% if messages %}
-            {% for message in messages %}
-                <div class="{{ message.tags }}">
-                    <h4>INFO:</h4>
-                    <p>
-                        {{ message }}
-                    </p>
-                </div>
-            {% endfor %}
-        {% endif %}
-
-
-        {% if form.non_field_errors %}
-            {% for error in form.non_field_errors %}
-                <div class="alert">
-                    <h4>ERROR:</h4>
-                    <p>
-                        {{ error }}
-                    </p>
-                </div>
-            {% endfor %}
-        {% endif %}
-
-
-        <form method="post" class="form">
-            {% csrf_token %}
-            {% for field in form %}
-
-                {% if field.errors %}
-                    {% for error in field.errors %}
-                        <div class="alert">
-                            {{ error|escape }}
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="{{ message.tags }}">
+                            <h4>INFO:</h4>
+                            <p>
+                                {{ message }}
+                            </p>
                         </div>
                     {% endfor %}
                 {% endif %}
 
-                {{ field.label_tag }}
-                <br>
-                {{ field }}
-                <br>
-                <br>
-            {% endfor %}
 
-            <button type="submit">
-                Sign in
-            </button>
-        </form>
-    </div>
+                {% if form.non_field_errors %}
+                    {% for error in form.non_field_errors %}
+                        <div class="alert">
+                            <h4>ERROR:</h4>
+                            <p>
+                                {{ error }}
+                            </p>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+
+                <form method="post" class="form">
+                    {% csrf_token %}
+                    {% for field in form %}
+
+                        {% if field.errors %}
+                            {% for error in field.errors %}
+                                <div class="field_alert">
+                                    {{ error|escape }}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+
+                        
+                        <br>
+                        {{ field }}
+                        <br>
+                        <br>
+                    {% endfor %}
+
+                    <button type="submit">
+                        Sign in
+                    </button>
+                </form>
+            </div>
+
+        </div>
+    
+
+    
 {% endblock %}
 
 
