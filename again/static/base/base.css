@@ -9,7 +9,7 @@ table {
 
 .split_left{
 
-	/*background-image: url('')*/
+	background-image: url('/static/base/img/tree.jpg');
 
 	background-color: white;
 	width: 64%;
@@ -18,10 +18,12 @@ table {
 
 .split_right{
 
-	
-	background-color: black;
 	width:36%;
 	left:64%;
+}
+
+.bg_primary{
+	background-color: rgb(20,20,20);
 }
 
 .split{
@@ -36,10 +38,10 @@ table {
 .auth{
 	
 	margin-top: 28%;
-	margin-right: 15%;
-	margin-left: 15%;
+	/*margin-right: 15%;*/
+	/*margin-left: 15%;*/
 	position: relative;
-	height:200px;
+	height:30%;
 	/*background-color: white;	*/
 	padding: 50px;
 	text-align: center;
@@ -52,18 +54,44 @@ table {
 
 }
 
+.auth input 
+{
+	width: 40%;
+}
+.auth button{
+	width: 25%;
+	min-width: 98px;
+}
 .authors {
 	position: fixed;
-	margin-top: 95%;
+	margin-bottom: 2%;
 	margin-left: 1%;
-	width: 15%;
-	height: 8%;
+	width: 20%;
+	height: 10%;
 	left: 0;
 	bottom: 1%;
 	
 	
 }
 .authors  p{
-	color: black;
+	color: white;
+	margin: 5px 5px;
 }
 
+.header{
+	background-color: rgba(255,255,255,0.2);
+	left: 0;
+	top: 10%;
+	width: 100%;
+	height: 10%;
+	position: relative;
+	/*text-align: center;*/
+}
+.header p{
+	position: relative;
+	font-size: 300%;
+	top: 50%;
+	left: 10%;
+	transform: translateY(-50%);
+	color: white;
+}
