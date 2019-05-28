@@ -1,0 +1,58 @@
+{% extends 'again/base.html' %}
+{% block title %}New transfer{% endblock %}
+{% block content %}
+    <div class="nav">
+        <p>
+            <a href="/">Main page</a>
+        </p>
+    </div>
+
+    <h1>New transfer</h1>
+    {% if messages %}
+        {% for message in messages %}
+            <div class="{{ message.tags }}">
+                <h4>INFO:</h4>
+                <p>
+                    {{ message }}
+                </p>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+
+    {% if form.non_field_errors %}
+        {% for error in form.non_field_errors %}
+            <div class="alert">
+                <h4>ERROR:</h4>
+                <p>
+                    {{ error }}
+                </p>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+
+    <form method="post" class="form">
+        {% csrf_token %}
+        {% for field in form %}
+
+            {% if field.errors %}
+                {% for error in field.errors %}
+                    <div class="alert">
+                        {{ error|escape }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+            {{ field.label_tag }}
+            <br>
+            {{ field }}
+            <br>
+            <br>
+        {% endfor %}
+
+        <button type="submit">
+            Add transfer
+        </button>
+    </form>
+{% endblock %}

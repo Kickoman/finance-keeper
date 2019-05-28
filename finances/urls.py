@@ -10,4 +10,5 @@ urlpatterns = [
     path('add_transaction/', views.add_transaction, name='addtr'),
     path('add_account/', views.add_account, name='addac'),
     path('dashboard/', views.dashboard, name='dashboard'),
+    path('transfer/', views.transfer, name='transfer'),
 ]

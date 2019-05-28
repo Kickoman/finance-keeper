@@ -45,3 +45,14 @@ class Transaction(models.Model):
     cost = models.DecimalField(max_digits=15, decimal_places=2)
     amount = models.DecimalField(max_digits=15, decimal_places=3, default=1)
     description = models.CharField(max_length=500, null=True)
+
+
+class Transfer(models.Model):
+    def __str__(self):
+        pass
+
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    source = models.ForeignKey(Account, on_delete=models.CASCADE, related_name="transfer_source")
+    destination = models.ForeignKey(Account, on_delete=models.CASCADE, related_name="transfer_destination")
+    amount = models.DecimalField(max_digits=15, decimal_places=2)
+    description = models.CharField(max_length=500, null=True)

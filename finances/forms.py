@@ -3,7 +3,7 @@ from django.core.exceptions import ValidationError
 from django.forms import ModelForm
 from django.contrib.auth.models import User
 
-from .models import Transaction, Account
+from .models import Transaction, Account, Transfer
 
 
 class TransactionForm(ModelForm):
@@ -29,3 +29,14 @@ class AccountForm(ModelForm):
     class Meta:
         model = Account
         fields = ['name']
+
+
+class TransferForm(ModelForm):
+    class Meta:
+        model = Transfer
+        fields = [
+            'source',
+            'destination',
+            'amount',
+            'description',
+        ]

@@ -5,7 +5,7 @@ from django.core.exceptions import PermissionDenied
 from django.contrib import messages
 
 from .models import Transaction, Account, Category
-from .forms import TransactionForm, AccountForm
+from .forms import TransactionForm, AccountForm, TransferForm
 
 import datetime
 import decimal
@@ -112,3 +112,26 @@ def dashboard(request):
             'sum_for_month': sum_last_month
         }
     )
+
+
+def transfer(request):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect('/')
+
+    if request.method == 'POST':
+        form = TransferForm(request.POST)
+        if form.is_valid():
+            object = form.save(commit=False)
+            object.author = request.user
+            object.save()
+            form.save_m2m()
+            return HttpResponseRedirect('/finances/dashboard/')
+    else:
+        form = TransferForm()
+
+    # Populating set of values only with allowed items (accounts of current user)
+    # form.fields['account'].queryset = Account.objects.filter(author=request.user)
+    form.fields['source'].queryset = Account.objects.filter(author=request.user)
+    form.fields['destination'].queryset = Account.objects.filter(author=request.user)
+
+    return render(request, 'finances/transfer.html', {'form': form})
