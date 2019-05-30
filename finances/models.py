@@ -2,6 +2,8 @@ from django.db import models
 from django.contrib.auth.models import User
 from decimal import Decimal
 
+from django.db.models import Q  # for "or" operator in filters and etc
+
 
 # Create your models here.
 class Account(models.Model):
@@ -20,6 +22,14 @@ class Account(models.Model):
                 b += t.cost * t.amount
             else:
                 b -= t.cost * t.amount
+
+        all_transfers = Transfer.objects.filter(Q(source=self) | Q(destination=self))
+        for t in all_transfers:
+            if t.source == self:
+                b -= t.amount
+            elif t.destination == self:
+                b += t.amount
+
         return b
 
 
