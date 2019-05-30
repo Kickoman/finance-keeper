@@ -40,3 +40,12 @@ class TransferForm(ModelForm):
             'amount',
             'description',
         ]
+
+    def clean(self):
+        cleaned_data = super().clean()
+        source = cleaned_data.get('source')
+        destination = cleaned_data.get('destination')
+
+        if source == destination:
+            msg = 'Source and destination values can not be the same!'
+            self.add_error('destination', msg)
