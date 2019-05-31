@@ -12,6 +12,7 @@ class Account(models.Model):
 
     name = models.CharField(max_length=100)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
+    currency = models.CharField(max_length=3, default='BYN')
 
     @property
     def balance(self):

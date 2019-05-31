@@ -75,21 +75,25 @@ def details(request):
     if not request.user.is_authenticated:
         raise PermissionDenied
 
+    balances = {}
     current_balance = Decimal(0)
     all_transactions = Transaction.objects.filter(
         author=request.user
     )
+
     for t in all_transactions:
-        if t.type:
-            current_balance += t.cost * t.amount
+        cur = t.account.currency
+        factor = 1 if t.type else -1
+        if cur in balances:
+            balances[cur] += t.cost * t.amount * factor
         else:
-            current_balance -= t.cost * t.amount
+            balances[cur] = t.cost * t.amount * factor
 
     accounts = Account.objects.filter(author=request.user)
 
     template = loader.get_template('accounts/details.html')
     context = {
         'accounts': accounts,
-        'balance': current_balance
+        'balance': balances
     }
     return HttpResponse(template.render(context, request))

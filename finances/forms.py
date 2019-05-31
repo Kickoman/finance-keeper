@@ -28,7 +28,7 @@ class TransactionForm(ModelForm):
 class AccountForm(ModelForm):
     class Meta:
         model = Account
-        fields = ['name']
+        fields = ['name', 'currency']
 
 
 class TransferForm(ModelForm):
