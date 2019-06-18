@@ -1,9 +1,8 @@
 {% extends 'again/base.html' %}
 
 {% block content %}
-    <h1>Finance Keeper</h1>
-
     {% if user.is_authenticated %}
+    <h1>Finance Keeper</h1>
         <p>
             Welcome here, {{ user }}!
         </p>
@@ -27,6 +26,7 @@
 
             <h3>Useful links</h3>
             <ul>
+                <li><a href="{% url 'finances:dashboard' %}">Personal dashboard</a></li>
                 <li><a href="{% url 'finances:list' %}">List of all completed transactions</a></li>
                 <li><a href="{% url 'finances:addtr' %}">Add new transaction</a></li>
                 <li><a href="{% url 'finances:addac' %}">Add new account</a></li>
@@ -35,14 +35,40 @@
 
 
     {% else %}
-        <p>
-            You can <a href="{% url 'accounts:sign_in' %}">log in</a> now if you have an account.
-        </p>
+        <div class="split split_left">
+            <div class = "authors">
+                <p>Made by:</p>
+                <p><a href="https://github.com/Kickoman">Kanstancin Novikau</a></p>
+                <p><a href="https://github.com/LizaTheGreatest">Liza Phan</a></p>
 
-        <p>
-            If you don't have an account, you should
-            <a href="{% url 'accounts:sign_up' %}">register</a>.
-        </p>
+            </div>
+            <div class="header">
+                <p>Finance Keeper</p>
+            </div>
+                
+
+        </div>
+
+        <div class="split split_right bg_primary">
+            <section class = "auth">
+                <form method="post" action="{% url 'accounts:sign_in' %}">
+                    {% csrf_token %}
+                    <input id="usrn" type="text" name="username" placeholder="USERNAME">
+                    <br>
+                    <br>
+
+                    <input id="pw" type="password" name="password" placeholder="PASSWORD">
+                    <br>
+                    <br>
+                    <!-- <input id="sb" type="submit" value="Sign in"> -->
+                    <button type="submit">Sign in</button>
+                </form>
+
+                <p>Create an account <a href="{% url 'accounts:sign_up' %}">Sign up</a></p>
+
+                    
+            </section>
+        
 
     {% endif %}
 {% endblock %}

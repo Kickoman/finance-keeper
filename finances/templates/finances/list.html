@@ -2,6 +2,18 @@
 
 {% block title %}List of all completed transactions{% endblock %}
 
+{% block css %}
+<style>
+    span.align-left {
+        float: left;
+    }
+
+    span.align-right {
+        float: right;
+    }
+</style>
+{% endblock %}
+
 {% block content %}
     <div class="nav">
         <p>
@@ -49,7 +61,7 @@
                         {{ t.author }}
                     </td>
                     <td>
-                        {{ t.cost }}
+                        <span class="align-left">{{ t.cost }}</span> <span class="align-right">{{ t.account.currency }}</span>
                     </td>
                     <td>
                         {{ t.amount }}

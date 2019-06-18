@@ -2,6 +2,8 @@ from django.db import models
 from django.contrib.auth.models import User
 from decimal import Decimal
 
+from django.db.models import Q  # for "or" operator in filters and etc
+
 
 # Create your models here.
 class Account(models.Model):
@@ -10,6 +12,7 @@ class Account(models.Model):
 
     name = models.CharField(max_length=100)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
+    currency = models.CharField(max_length=3, default='BYN')
 
     @property
     def balance(self):
@@ -20,6 +23,14 @@ class Account(models.Model):
                 b += t.cost * t.amount
             else:
                 b -= t.cost * t.amount
+
+        all_transfers = Transfer.objects.filter(Q(source=self) | Q(destination=self))
+        for t in all_transfers:
+            if t.source == self:
+                b -= t.amount
+            elif t.destination == self:
+                b += t.amount
+
         return b
 
 
@@ -44,4 +55,15 @@ class Transaction(models.Model):
     account = models.ForeignKey(Account, on_delete=models.CASCADE, null=True)
     cost = models.DecimalField(max_digits=15, decimal_places=2)
     amount = models.DecimalField(max_digits=15, decimal_places=3, default=1)
+    description = models.CharField(max_length=500, null=True)
+
+
+class Transfer(models.Model):
+    def __str__(self):
+        pass
+
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    source = models.ForeignKey(Account, on_delete=models.CASCADE, related_name="transfer_source")
+    destination = models.ForeignKey(Account, on_delete=models.CASCADE, related_name="transfer_destination")
+    amount = models.DecimalField(max_digits=15, decimal_places=2)
     description = models.CharField(max_length=500, null=True)
