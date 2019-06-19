@@ -35,13 +35,13 @@ def add_transaction(request):
     if request.method == 'POST':
         form = TransactionForm(request.POST)
         if form.is_valid():
-            object = form.save(commit=False)
-            object.author = request.user
-            object.save()
+            transaction = form.save(commit=False)
+            transaction.author = request.user
+            transaction.save()
             form.save_m2m()
-            return HttpResponseRedirect('/finances/list?highlight=' + str(object.pk))
+            return HttpResponseRedirect('/finances/list?highlight=' + str(transaction.pk))
     else:
-        form = TransactionForm()
+        form = TransactionForm(initial={'date' : datetime.datetime.now()})
 
     # Populating set of values only with allowed items (accounts of current user)
     form.fields['account'].queryset = Account.objects.filter(author=request.user)

@@ -1,12 +1,15 @@
 from django import forms
 from django.core.exceptions import ValidationError
-from django.forms import ModelForm
 from django.contrib.auth.models import User
 
 from .models import Transaction, Account, Transfer
 
 
-class TransactionForm(ModelForm):
+class DateInput(forms.DateInput):
+    input_type = 'date'
+
+
+class TransactionForm(forms.ModelForm):
     class Meta:
         model = Transaction
         fields = [
@@ -19,19 +22,22 @@ class TransactionForm(ModelForm):
             'amount',
             'description'
         ]
+        widgets = {
+            'date': DateInput()
+        }
 
     # def __init__(self, user, *args, **kwargs):
     #     super(TransactionForm, self).__init__(*args, **kwargs)
         # self.fields['account'].queryset = Account.objects.filter(author=user)
 
 
-class AccountForm(ModelForm):
+class AccountForm(forms.ModelForm):
     class Meta:
         model = Account
         fields = ['name', 'currency']
 
 
-class TransferForm(ModelForm):
+class TransferForm(forms.ModelForm):
     class Meta:
         model = Transfer
         fields = [
