@@ -71,11 +71,12 @@ table {
 }
 button{
 	border: none;
-	height: 30px;
-	width: 25%;
-	min-width: 98px;
+	height: 35px;
+	width: 70px;
+	color: white;
 	transition-duration: 0.4s;
 	background-color:  #28bd55;
+	font-size: 90%;
 }
 
 
