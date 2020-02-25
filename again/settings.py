@@ -77,22 +77,8 @@ WSGI_APPLICATION = 'again.wsgi.application'
 
 DATABASES = {
     'default' : {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'django_fkeeper',
-        'USER': 'django',
-        'PASSWORD': 'djangopasswd',
-        'HOST': '157.230.127.205', # Deployment server
-    },
-    'tmp': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    },
-    'local' : {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'django_fkeeper',
-        'USER': 'django',
-        'PASSWORD': 'djangopasswd',
-        'HOST': 'localhost',
     }
 }
 
