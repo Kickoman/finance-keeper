@@ -8,5 +8,5 @@ def index(request):
     # from index page to dashboard for authorized users (for Kirill)
     # if request.user.is_authenticated:	# TODO: replace with something more beautiful
     #     return HttpResponseRedirect('/finances/dashboard')
-    template = loader.get_template('again/index.html')
+    template = loader.get_template('fkeeper/index.html')
     return HttpResponse(template.render({}, request))
