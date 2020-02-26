@@ -1,0 +1,94 @@
+$scroll-width: .5rem;
+
+
+.right_side {
+  background-image: url('/static/base/img/tree.jpg');
+  background-attachment: fixed;
+  text-align: center;
+  color: white;
+}
+table {
+  width: 100%;
+  color: white;
+  position: absolute;
+  top: 10rem;
+}
+thead {
+  background-color: rgba(255, 255, 255, 0.9);
+  color: black;
+  top: 0;
+  left: -2px;
+  z-index: 2; 
+  width:  calc(100% - .5rem + 3px);
+  display: block;
+  border: none;
+
+  &::after{
+    background-color: rgba(255, 255, 255, 0.9);
+    content: '';
+    position: absolute;
+    top: 0;
+    right: -0.55rem;
+    height: 2.4rem;
+    width: calc(.5rem + 1px);
+  }
+}
+.date-col{
+  width: 8rem;
+}
+.type-col{
+  width: 7.5rem;
+}
+.name-col{
+  width: auto;
+}
+.categ-col{
+  width: 10rem;
+}
+.cost-col{
+  width: 6rem;
+}
+.amount-col{
+  width: 6.5rem;
+}
+
+tbody{
+  position: absolute;
+  overflow-y: scroll;
+  top: 2.5rem;
+  left: 0;
+  width: 100%;
+  height: calc(100vh - 15rem);
+  background-color: rgba(255, 255, 255, 0.25);
+  
+
+  &::-webkit-scrollbar-track
+  {
+      border-radius: ($scroll-width / 2);
+      background-color: none;
+  }
+  
+  &::-webkit-scrollbar
+  {   
+
+      width: $scroll-width;
+      background-color: none;
+  }
+  
+  &::-webkit-scrollbar-thumb
+  {
+      border-radius: ($scroll-width / 2);
+      background-color: rgba(255, 255, 255, 0.7);
+  }
+  
+}
+
+
+tr{
+  display: table;
+  width: 100%;
+  
+}
+td,th{
+  padding: .5rem;
+}

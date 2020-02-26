@@ -1,11 +1,14 @@
-@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
-@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
+$left-part-width: 20%;
+$accent-color: #28bd55;
+
 .mdi {
-  font-family: "Material Icons";
+  font-family: 'Material Icons';
   font-weight: normal;
   font-style: normal;
-  font-size: 1.5rem;
-  /* Preferred icon size */
+  font-size: 1.5rem; /* Preferred icon size */
   display: inline-block;
   line-height: 1;
   text-transform: none;
@@ -20,17 +23,19 @@
   /* Support for Firefox. */
   -moz-osx-font-smoothing: grayscale;
   /* Support for IE. */
-  font-feature-settings: "liga";
+  font-feature-settings: 'liga';
+
   /* usage: <i class="mdi"> <icon-name> </i>*/
 }
 
 * {
-  font-family: "Montserrat";
+  font-family: 'Montserrat';
   box-sizing: border-box;
   position: relative;
   margin: 0;
   padding: 0;
 }
+
 
 .auth {
   margin-top: 28%;
@@ -41,7 +46,6 @@
   padding: 50px;
   text-align: center;
 }
-
 .auth p {
   font-size: 15px;
   color: white;
@@ -55,16 +59,16 @@ input {
   background-color: white;
   border: 1px solid #b2b2b2;
   border-radius: 3px;
+
   padding-left: 5px;
 }
-
 button {
   border: none;
   height: 35px;
   width: 70px;
   color: white;
   transition-duration: 0.4s;
-  background-color: #28bd55;
+  background-color: $accent-color;
   font-size: 90%;
 }
 
@@ -82,7 +86,6 @@ button:hover {
   left: 0;
   bottom: 1%;
 }
-
 .authors p {
   color: white;
   margin: 5px;
@@ -90,18 +93,18 @@ button:hover {
 
 .left_side {
   left: 0;
-  width: 20%;
-  background-color: white;
+  width: $left-part-width;
+  background-color: rgb(255, 255, 255);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   z-index: 2;
-  box-shadow: 0 0 1rem 1px #cccccc;
+  box-shadow: 0 0 1rem 1px rgba(204, 204, 204, 1);
   padding: 3rem 2rem 0.5rem;
-}
-.left_side * {
-  text-align: center;
+  * {
+    text-align: center;
+  }
 }
 
 #created-by {
@@ -109,20 +112,19 @@ button:hover {
 }
 
 #balance {
-  color: #28bd55;
+  color: $accent-color;
+
   font-size: 2rem;
 }
-
 .right_side {
   padding-top: 3rem;
-  left: 20%;
-  width: 80%;
+  left: $left-part-width;
+  width: (100% - $left-part-width);
   /*background-color: black;*/
-  background-image: url("/static/base/img/tree.jpg");
+  background-image: url('/static/base/img/tree.jpg');
   background-attachment: fixed;
   text-align: center;
 }
-
 .left_side,
 .right_side {
   height: 100vh;
@@ -131,10 +133,7 @@ button:hover {
 }
 
 a {
-  color: #28bd55;
+  color: $accent-color;
   text-decoration: none;
 }
-
 /*009a63*/
-
-/*# sourceMappingURL=base.css.map */

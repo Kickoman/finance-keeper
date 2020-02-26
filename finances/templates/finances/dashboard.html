@@ -6,20 +6,21 @@
 {% endblock %}
 
 {% block content %}
-    
-    
 
-    
 
-    <div class="split blnce_side">
+    <div class="left_side">
 
-        <div class="header">
-            <h1>Dashboard</h1>
-            <h3>for {{ request.user }}</h3>
+        <nav>
+            <button>Log out</button> 
+            <a href="./accounts/details/"> <h3>{{ request.user }}</h3> </a>
+        </nav>
+        <div id="balance">
+            <h3>Balance</h3>
+            <span>9.41</span>
         </div>
+        <a href="#" id="created-by">Created by</a>
     </div>
-    <div class="split tbl_side">
-        
+    <div class="right_side">        
                <div class="tables"> {# TODO: check class naming #}
                 <span>Your balance for the last month is {{ sum_for_month }}.</span>
                 <span>
@@ -30,47 +31,854 @@
                     {% endif %}
                 </span>
         
-
-            <table>
-                <thead>
-                    <tr>
-                        <th>Date</th>
-                        <th>Type</th>
-                        <th>Name</th>
-                        <th>Category</th>
-                        <th>Cost</th>
-                        <th>Amount</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for x in tr_history %}
+                <table>
+                    <thead>
                         <tr>
-                            <td> {# Date #}
-                                {{ x.date }}
+                            <th class="date-col">Date</th>
+                            <th class="type-col">Type</th>
+                            <th class="name-col">Name</th>
+                            <th class="categ-col">Category</th>
+                            <th class="cost-col">Cost</th>
+                            <th class="amount-col">Amount</th>
+                        </tr>
+                    </thead>
+                    <!-- <tbody>
+                        {% for x in tr_history %}
+                            <tr>
+                                <td> {# Date #}
+                                    {{ x.date }}
+                                </td>
+                                <td> {# Type #}
+                                    {% if x.type %}
+                                        Income
+                                    {% else %}
+                                        Expense
+                                    {% endif %}
+                                </td>
+                                <td> {# Name #}
+                                    {{ x.name }}
+                                </td>
+                                <td> {# Category #}
+                                    {{ x.category }}
+                                </td>
+                                <td> {# Cost #}
+                                    {{ x.cost }}
+                                </td>
+                                <td> {# Amount #} {# TODO: replace cost & amount columns with the only one #}
+                                    {{ x.amount }}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody> -->
+                    <tbody>
+                        <tr>
+                            <td class="date-col"> 
+                                01.01.1970
                             </td>
-                            <td> {# Type #}
+                            <td class="type-col"> {# Type #}
                                 {% if x.type %}
                                     Income
                                 {% else %}
                                     Expense
                                 {% endif %}
                             </td>
-                            <td> {# Name #}
-                                {{ x.name }}
+                            <td class="name-col"> {# Name #}
+                                William Lawson
                             </td>
-                            <td> {# Category #}
-                                {{ x.category }}
+                            <td class="categ-col"> {# Category #}
+                                Alcohol
                             </td>
-                            <td> {# Cost #}
-                                {{ x.cost }}
+                            <td class="cost-col"> {# Cost #}
+                                25.99   
                             </td>
-                            <td> {# Amount #} {# TODO: replace cost & amount columns with the only one #}
-                                {{ x.amount }}
+                            <td class="amount-col"> {# Amount #} {# TODO: replace cost & amount columns with the only one #}
+                                1
+                            </td>
+                        </tr>                        <tr>
+                            <td class="date-col"> 
+                                01.01.1970
+                            </td>
+                            <td class="type-col"> {# Type #}
+                                {% if x.type %}
+                                    Income
+                                {% else %}
+                                    Expense
+                                {% endif %}
+                            </td>
+                            <td class="name-col"> {# Name #}
+                                William Lawson
+                            </td>
+                            <td class="categ-col"> {# Category #}
+                                Alcohol
+                            </td>
+                            <td class="cost-col"> {# Cost #}
+                                25.99   
+                            </td>
+                            <td class="amount-col"> {# Amount #} {# TODO: replace cost & amount columns with the only one #}
+                                1
+                            </td>
+                        </tr>                        <tr>
+                            <td class="date-col"> 
+                                01.01.1970
+                            </td>
+                            <td class="type-col"> {# Type #}
+                                {% if x.type %}
+                                    Income
+                                {% else %}
+                                    Expense
+                                {% endif %}
+                            </td>
+                            <td class="name-col"> {# Name #}
+                                William Lawson
+                            </td>
+                            <td class="categ-col"> {# Category #}
+                                Alcohol
+                            </td>
+                            <td class="cost-col"> {# Cost #}
+                                25.99   
+                            </td>
+                            <td class="amount-col"> {# Amount #} {# TODO: replace cost & amount columns with the only one #}
+                                1
+                            </td>
+                        </tr>                        <tr>
+                            <td class="date-col"> 
+                                01.01.1970
+                            </td>
+                            <td class="type-col"> {# Type #}
+                                {% if x.type %}
+                                    Income
+                                {% else %}
+                                    Expense
+                                {% endif %}
+                            </td>
+                            <td class="name-col"> {# Name #}
+                                William Lawson
+                            </td>
+                            <td class="categ-col"> {# Category #}
+                                Alcohol
+                            </td>
+                            <td class="cost-col"> {# Cost #}
+                                25.99   
+                            </td>
+                            <td class="amount-col"> {# Amount #} {# TODO: replace cost & amount columns with the only one #}
+                                1
+                            </td>
+                        </tr>                        <tr>
+                            <td class="date-col"> 
+                                01.01.1970
+                            </td>
+                            <td class="type-col"> {# Type #}
+                                {% if x.type %}
+                                    Income
+                                {% else %}
+                                    Expense
+                                {% endif %}
+                            </td>
+                            <td class="name-col"> {# Name #}
+                                William Lawson
+                            </td>
+                            <td class="categ-col"> {# Category #}
+                                Alcohol
+                            </td>
+                            <td class="cost-col"> {# Cost #}
+                                25.99   
+                            </td>
+                            <td class="amount-col"> {# Amount #} {# TODO: replace cost & amount columns with the only one #}
+                                1
+                            </td>
+                        </tr>                        <tr>
+                            <td class="date-col"> 
+                                01.01.1970
+                            </td>
+                            <td class="type-col"> {# Type #}
+                                {% if x.type %}
+                                    Income
+                                {% else %}
+                                    Expense
+                                {% endif %}
+                            </td>
+                            <td class="name-col"> {# Name #}
+                                William Lawson
+                            </td>
+                            <td class="categ-col"> {# Category #}
+                                Alcohol
+                            </td>
+                            <td class="cost-col"> {# Cost #}
+                                25.99   
+                            </td>
+                            <td class="amount-col"> {# Amount #} {# TODO: replace cost & amount columns with the only one #}
+                                1
+                            </td>
+                        </tr>                        <tr>
+                            <td class="date-col"> 
+                                01.01.1970
+                            </td>
+                            <td class="type-col"> {# Type #}
+                                {% if x.type %}
+                                    Income
+                                {% else %}
+                                    Expense
+                                {% endif %}
+                            </td>
+                            <td class="name-col"> {# Name #}
+                                William Lawson
+                            </td>
+                            <td class="categ-col"> {# Category #}
+                                Alcohol
+                            </td>
+                            <td class="cost-col"> {# Cost #}
+                                25.99   
+                            </td>
+                            <td class="amount-col"> {# Amount #} {# TODO: replace cost & amount columns with the only one #}
+                                1
+                            </td>
+                        </tr>                        <tr>
+                            <td class="date-col"> 
+                                01.01.1970
+                            </td>
+                            <td class="type-col"> {# Type #}
+                                {% if x.type %}
+                                    Income
+                                {% else %}
+                                    Expense
+                                {% endif %}
+                            </td>
+                            <td class="name-col"> {# Name #}
+                                William Lawson
+                            </td>
+                            <td class="categ-col"> {# Category #}
+                                Alcohol
+                            </td>
+                            <td class="cost-col"> {# Cost #}
+                                25.99   
+                            </td>
+                            <td class="amount-col"> {# Amount #} {# TODO: replace cost & amount columns with the only one #}
+                                1
+                            </td>
+                        </tr>                        <tr>
+                            <td class="date-col"> 
+                                01.01.1970
+                            </td>
+                            <td class="type-col"> {# Type #}
+                                {% if x.type %}
+                                    Income
+                                {% else %}
+                                    Expense
+                                {% endif %}
+                            </td>
+                            <td class="name-col"> {# Name #}
+                                William Lawson
+                            </td>
+                            <td class="categ-col"> {# Category #}
+                                Alcohol
+                            </td>
+                            <td class="cost-col"> {# Cost #}
+                                25.99   
+                            </td>
+                            <td class="amount-col"> {# Amount #} {# TODO: replace cost & amount columns with the only one #}
+                                1
+                            </td>
+                        </tr>                        <tr>
+                            <td class="date-col"> 
+                                01.01.1970
+                            </td>
+                            <td class="type-col"> {# Type #}
+                                {% if x.type %}
+                                    Income
+                                {% else %}
+                                    Expense
+                                {% endif %}
+                            </td>
+                            <td class="name-col"> {# Name #}
+                                William Lawson
+                            </td>
+                            <td class="categ-col"> {# Category #}
+                                Alcohol
+                            </td>
+                            <td class="cost-col"> {# Cost #}
+                                25.99   
+                            </td>
+                            <td class="amount-col"> {# Amount #} {# TODO: replace cost & amount columns with the only one #}
+                                1
+                            </td>
+                        </tr>                        <tr>
+                            <td class="date-col"> 
+                                01.01.1970
+                            </td>
+                            <td class="type-col"> {# Type #}
+                                {% if x.type %}
+                                    Income
+                                {% else %}
+                                    Expense
+                                {% endif %}
+                            </td>
+                            <td class="name-col"> {# Name #}
+                                William Lawson
+                            </td>
+                            <td class="categ-col"> {# Category #}
+                                Alcohol
+                            </td>
+                            <td class="cost-col"> {# Cost #}
+                                25.99   
+                            </td>
+                            <td class="amount-col"> {# Amount #} {# TODO: replace cost & amount columns with the only one #}
+                                1
+                            </td>
+                        </tr>                        <tr>
+                            <td class="date-col"> 
+                                01.01.1970
+                            </td>
+                            <td class="type-col"> {# Type #}
+                                {% if x.type %}
+                                    Income
+                                {% else %}
+                                    Expense
+                                {% endif %}
+                            </td>
+                            <td class="name-col"> {# Name #}
+                                William Lawson
+                            </td>
+                            <td class="categ-col"> {# Category #}
+                                Alcohol
+                            </td>
+                            <td class="cost-col"> {# Cost #}
+                                25.99   
+                            </td>
+                            <td class="amount-col"> {# Amount #} {# TODO: replace cost & amount columns with the only one #}
+                                1
+                            </td>
+                        </tr>                        <tr>
+                            <td class="date-col"> 
+                                01.01.1970
+                            </td>
+                            <td class="type-col"> {# Type #}
+                                {% if x.type %}
+                                    Income
+                                {% else %}
+                                    Expense
+                                {% endif %}
+                            </td>
+                            <td class="name-col"> {# Name #}
+                                William Lawson
+                            </td>
+                            <td class="categ-col"> {# Category #}
+                                Alcohol
+                            </td>
+                            <td class="cost-col"> {# Cost #}
+                                25.99   
+                            </td>
+                            <td class="amount-col"> {# Amount #} {# TODO: replace cost & amount columns with the only one #}
+                                1
+                            </td>
+                        </tr>                        <tr>
+                            <td class="date-col"> 
+                                01.01.1970
+                            </td>
+                            <td class="type-col"> {# Type #}
+                                {% if x.type %}
+                                    Income
+                                {% else %}
+                                    Expense
+                                {% endif %}
+                            </td>
+                            <td class="name-col"> {# Name #}
+                                William Lawson
+                            </td>
+                            <td class="categ-col"> {# Category #}
+                                Alcohol
+                            </td>
+                            <td class="cost-col"> {# Cost #}
+                                25.99   
+                            </td>
+                            <td class="amount-col"> {# Amount #} {# TODO: replace cost & amount columns with the only one #}
+                                1
+                            </td>
+                        </tr>                        <tr>
+                            <td class="date-col"> 
+                                01.01.1970
+                            </td>
+                            <td class="type-col"> {# Type #}
+                                {% if x.type %}
+                                    Income
+                                {% else %}
+                                    Expense
+                                {% endif %}
+                            </td>
+                            <td class="name-col"> {# Name #}
+                                William Lawson
+                            </td>
+                            <td class="categ-col"> {# Category #}
+                                Alcohol
+                            </td>
+                            <td class="cost-col"> {# Cost #}
+                                25.99   
+                            </td>
+                            <td class="amount-col"> {# Amount #} {# TODO: replace cost & amount columns with the only one #}
+                                1
+                            </td>
+                        </tr>                        <tr>
+                            <td class="date-col"> 
+                                01.01.1970
+                            </td>
+                            <td class="type-col"> {# Type #}
+                                {% if x.type %}
+                                    Income
+                                {% else %}
+                                    Expense
+                                {% endif %}
+                            </td>
+                            <td class="name-col"> {# Name #}
+                                William Lawson
+                            </td>
+                            <td class="categ-col"> {# Category #}
+                                Alcohol
+                            </td>
+                            <td class="cost-col"> {# Cost #}
+                                25.99   
+                            </td>
+                            <td class="amount-col"> {# Amount #} {# TODO: replace cost & amount columns with the only one #}
+                                1
+                            </td>
+                        </tr>                        <tr>
+                            <td class="date-col"> 
+                                01.01.1970
+                            </td>
+                            <td class="type-col"> {# Type #}
+                                {% if x.type %}
+                                    Income
+                                {% else %}
+                                    Expense
+                                {% endif %}
+                            </td>
+                            <td class="name-col"> {# Name #}
+                                William Lawson
+                            </td>
+                            <td class="categ-col"> {# Category #}
+                                Alcohol
+                            </td>
+                            <td class="cost-col"> {# Cost #}
+                                25.99   
+                            </td>
+                            <td class="amount-col"> {# Amount #} {# TODO: replace cost & amount columns with the only one #}
+                                1
+                            </td>
+                        </tr>                        <tr>
+                            <td class="date-col"> 
+                                01.01.1970
+                            </td>
+                            <td class="type-col"> {# Type #}
+                                {% if x.type %}
+                                    Income
+                                {% else %}
+                                    Expense
+                                {% endif %}
+                            </td>
+                            <td class="name-col"> {# Name #}
+                                William Lawson
+                            </td>
+                            <td class="categ-col"> {# Category #}
+                                Alcohol
+                            </td>
+                            <td class="cost-col"> {# Cost #}
+                                25.99   
+                            </td>
+                            <td class="amount-col"> {# Amount #} {# TODO: replace cost & amount columns with the only one #}
+                                1
+                            </td>
+                        </tr>                        <tr>
+                            <td class="date-col"> 
+                                01.01.1970
+                            </td>
+                            <td class="type-col"> {# Type #}
+                                {% if x.type %}
+                                    Income
+                                {% else %}
+                                    Expense
+                                {% endif %}
+                            </td>
+                            <td class="name-col"> {# Name #}
+                                William Lawson
+                            </td>
+                            <td class="categ-col"> {# Category #}
+                                Alcohol
+                            </td>
+                            <td class="cost-col"> {# Cost #}
+                                25.99   
+                            </td>
+                            <td class="amount-col"> {# Amount #} {# TODO: replace cost & amount columns with the only one #}
+                                1
+                            </td>
+                        </tr>                        <tr>
+                            <td class="date-col"> 
+                                01.01.1970
+                            </td>
+                            <td class="type-col"> {# Type #}
+                                {% if x.type %}
+                                    Income
+                                {% else %}
+                                    Expense
+                                {% endif %}
+                            </td>
+                            <td class="name-col"> {# Name #}
+                                William Lawson
+                            </td>
+                            <td class="categ-col"> {# Category #}
+                                Alcohol
+                            </td>
+                            <td class="cost-col"> {# Cost #}
+                                25.99   
+                            </td>
+                            <td class="amount-col"> {# Amount #} {# TODO: replace cost & amount columns with the only one #}
+                                1
+                            </td>
+                        </tr>                        <tr>
+                            <td class="date-col"> 
+                                01.01.1970
+                            </td>
+                            <td class="type-col"> {# Type #}
+                                {% if x.type %}
+                                    Income
+                                {% else %}
+                                    Expense
+                                {% endif %}
+                            </td>
+                            <td class="name-col"> {# Name #}
+                                William Lawson
+                            </td>
+                            <td class="categ-col"> {# Category #}
+                                Alcohol
+                            </td>
+                            <td class="cost-col"> {# Cost #}
+                                25.99   
+                            </td>
+                            <td class="amount-col"> {# Amount #} {# TODO: replace cost & amount columns with the only one #}
+                                1
+                            </td>
+                        </tr>                        <tr>
+                            <td class="date-col"> 
+                                01.01.1970
+                            </td>
+                            <td class="type-col"> {# Type #}
+                                {% if x.type %}
+                                    Income
+                                {% else %}
+                                    Expense
+                                {% endif %}
+                            </td>
+                            <td class="name-col"> {# Name #}
+                                William Lawson
+                            </td>
+                            <td class="categ-col"> {# Category #}
+                                Alcohol
+                            </td>
+                            <td class="cost-col"> {# Cost #}
+                                25.99   
+                            </td>
+                            <td class="amount-col"> {# Amount #} {# TODO: replace cost & amount columns with the only one #}
+                                1
+                            </td>
+                        </tr>                        <tr>
+                            <td class="date-col"> 
+                                01.01.1970
+                            </td>
+                            <td class="type-col"> {# Type #}
+                                {% if x.type %}
+                                    Income
+                                {% else %}
+                                    Expense
+                                {% endif %}
+                            </td>
+                            <td class="name-col"> {# Name #}
+                                William Lawson
+                            </td>
+                            <td class="categ-col"> {# Category #}
+                                Alcohol
+                            </td>
+                            <td class="cost-col"> {# Cost #}
+                                25.99   
+                            </td>
+                            <td class="amount-col"> {# Amount #} {# TODO: replace cost & amount columns with the only one #}
+                                1
+                            </td>
+                        </tr>                        <tr>
+                            <td class="date-col"> 
+                                01.01.1970
+                            </td>
+                            <td class="type-col"> {# Type #}
+                                {% if x.type %}
+                                    Income
+                                {% else %}
+                                    Expense
+                                {% endif %}
+                            </td>
+                            <td class="name-col"> {# Name #}
+                                William Lawson
+                            </td>
+                            <td class="categ-col"> {# Category #}
+                                Alcohol
+                            </td>
+                            <td class="cost-col"> {# Cost #}
+                                25.99   
+                            </td>
+                            <td class="amount-col"> {# Amount #} {# TODO: replace cost & amount columns with the only one #}
+                                1
+                            </td>
+                        </tr>                        <tr>
+                            <td class="date-col"> 
+                                01.01.1970
+                            </td>
+                            <td class="type-col"> {# Type #}
+                                {% if x.type %}
+                                    Income
+                                {% else %}
+                                    Expense
+                                {% endif %}
+                            </td>
+                            <td class="name-col"> {# Name #}
+                                William Lawson
+                            </td>
+                            <td class="categ-col"> {# Category #}
+                                Alcohol
+                            </td>
+                            <td class="cost-col"> {# Cost #}
+                                25.99   
+                            </td>
+                            <td class="amount-col"> {# Amount #} {# TODO: replace cost & amount columns with the only one #}
+                                1
+                            </td>
+                        </tr>                        <tr>
+                            <td class="date-col"> 
+                                01.01.1970
+                            </td>
+                            <td class="type-col"> {# Type #}
+                                {% if x.type %}
+                                    Income
+                                {% else %}
+                                    Expense
+                                {% endif %}
+                            </td>
+                            <td class="name-col"> {# Name #}
+                                William Lawson
+                            </td>
+                            <td class="categ-col"> {# Category #}
+                                Alcohol
+                            </td>
+                            <td class="cost-col"> {# Cost #}
+                                25.99   
+                            </td>
+                            <td class="amount-col"> {# Amount #} {# TODO: replace cost & amount columns with the only one #}
+                                1
+                            </td>
+                        </tr>                        <tr>
+                            <td class="date-col"> 
+                                01.01.1970
+                            </td>
+                            <td class="type-col"> {# Type #}
+                                {% if x.type %}
+                                    Income
+                                {% else %}
+                                    Expense
+                                {% endif %}
+                            </td>
+                            <td class="name-col"> {# Name #}
+                                William Lawson
+                            </td>
+                            <td class="categ-col"> {# Category #}
+                                Alcohol
+                            </td>
+                            <td class="cost-col"> {# Cost #}
+                                25.99   
+                            </td>
+                            <td class="amount-col"> {# Amount #} {# TODO: replace cost & amount columns with the only one #}
+                                1
+                            </td>
+                        </tr>                        <tr>
+                            <td class="date-col"> 
+                                01.01.1970
+                            </td>
+                            <td class="type-col"> {# Type #}
+                                {% if x.type %}
+                                    Income
+                                {% else %}
+                                    Expense
+                                {% endif %}
+                            </td>
+                            <td class="name-col"> {# Name #}
+                                William Lawson
+                            </td>
+                            <td class="categ-col"> {# Category #}
+                                Alcohol
+                            </td>
+                            <td class="cost-col"> {# Cost #}
+                                25.99   
+                            </td>
+                            <td class="amount-col"> {# Amount #} {# TODO: replace cost & amount columns with the only one #}
+                                1
+                            </td>
+                        </tr>                        <tr>
+                            <td class="date-col"> 
+                                01.01.1970
+                            </td>
+                            <td class="type-col"> {# Type #}
+                                {% if x.type %}
+                                    Income
+                                {% else %}
+                                    Expense
+                                {% endif %}
+                            </td>
+                            <td class="name-col"> {# Name #}
+                                William Lawson
+                            </td>
+                            <td class="categ-col"> {# Category #}
+                                Alcohol
+                            </td>
+                            <td class="cost-col"> {# Cost #}
+                                25.99   
+                            </td>
+                            <td class="amount-col"> {# Amount #} {# TODO: replace cost & amount columns with the only one #}
+                                1
+                            </td>
+                        </tr>                        <tr>
+                            <td class="date-col"> 
+                                01.01.1970
+                            </td>
+                            <td class="type-col"> {# Type #}
+                                {% if x.type %}
+                                    Income
+                                {% else %}
+                                    Expense
+                                {% endif %}
+                            </td>
+                            <td class="name-col"> {# Name #}
+                                William Lawson
+                            </td>
+                            <td class="categ-col"> {# Category #}
+                                Alcohol
+                            </td>
+                            <td class="cost-col"> {# Cost #}
+                                25.99   
+                            </td>
+                            <td class="amount-col"> {# Amount #} {# TODO: replace cost & amount columns with the only one #}
+                                1
+                            </td>
+                        </tr>                        <tr>
+                            <td class="date-col"> 
+                                01.01.1970
+                            </td>
+                            <td class="type-col"> {# Type #}
+                                {% if x.type %}
+                                    Income
+                                {% else %}
+                                    Expense
+                                {% endif %}
+                            </td>
+                            <td class="name-col"> {# Name #}
+                                William Lawson
+                            </td>
+                            <td class="categ-col"> {# Category #}
+                                Alcohol
+                            </td>
+                            <td class="cost-col"> {# Cost #}
+                                25.99   
+                            </td>
+                            <td class="amount-col"> {# Amount #} {# TODO: replace cost & amount columns with the only one #}
+                                1
+                            </td>
+                        </tr>                        <tr>
+                            <td class="date-col"> 
+                                01.01.1970
+                            </td>
+                            <td class="type-col"> {# Type #}
+                                {% if x.type %}
+                                    Income
+                                {% else %}
+                                    Expense
+                                {% endif %}
+                            </td>
+                            <td class="name-col"> {# Name #}
+                                William Lawson
+                            </td>
+                            <td class="categ-col"> {# Category #}
+                                Alcohol
+                            </td>
+                            <td class="cost-col"> {# Cost #}
+                                25.99   
+                            </td>
+                            <td class="amount-col"> {# Amount #} {# TODO: replace cost & amount columns with the only one #}
+                                1
+                            </td>
+                        </tr>                        <tr>
+                            <td class="date-col"> 
+                                01.01.1970
+                            </td>
+                            <td class="type-col"> {# Type #}
+                                {% if x.type %}
+                                    Income
+                                {% else %}
+                                    Expense
+                                {% endif %}
+                            </td>
+                            <td class="name-col"> {# Name #}
+                                William Lawson
+                            </td>
+                            <td class="categ-col"> {# Category #}
+                                Alcohol
+                            </td>
+                            <td class="cost-col"> {# Cost #}
+                                25.99   
+                            </td>
+                            <td class="amount-col"> {# Amount #} {# TODO: replace cost & amount columns with the only one #}
+                                1
+                            </td>
+                        </tr>                        <tr>
+                            <td class="date-col"> 
+                                01.01.1970
+                            </td>
+                            <td class="type-col"> {# Type #}
+                                {% if x.type %}
+                                    Income
+                                {% else %}
+                                    Expense
+                                {% endif %}
+                            </td>
+                            <td class="name-col"> {# Name #}
+                                William Lawson
+                            </td>
+                            <td class="categ-col"> {# Category #}
+                                Alcohol
+                            </td>
+                            <td class="cost-col"> {# Cost #}
+                                25.99   
+                            </td>
+                            <td class="amount-col"> {# Amount #} {# TODO: replace cost & amount columns with the only one #}
+                                1
+                            </td>
+                        </tr>                        <tr>
+                            <td class="date-col"> 
+                                01.01.1970
+                            </td>
+                            <td class="type-col"> {# Type #}
+                                {% if x.type %}
+                                    Income
+                                {% else %}
+                                    Expense
+                                {% endif %}
+                            </td>
+                            <td class="name-col"> {# Name #}
+                                William Lawson
+                            </td>
+                            <td class="categ-col"> {# Category #}
+                                Alcohol
+                            </td>
+                            <td class="cost-col"> {# Cost #}
+                                25.99   
+                            </td>
+                            <td class="amount-col"> {# Amount #} {# TODO: replace cost & amount columns with the only one #}
+                                1
                             </td>
                         </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
         </div>
     </div>
 
