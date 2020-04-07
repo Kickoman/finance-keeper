@@ -1,4 +1,5 @@
-{% extends 'again/base.html' %}
+{% extends 'fkeeper/base.html' %}
+{% load static %}
 
 {% block title %}List of all completed transactions{% endblock %}
 
@@ -15,9 +16,75 @@
 {% endblock %}
 
 {% block content %}
-    <div class="nav">
+    
+        <div class="nav">
+            <p>
+                <a href="{% url 'index' %}">Main page</a>
+            </p>
+        </div>
+    
+    
+        {% if transactions %}
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>Name</th>
+                        <th>Date</th>
+                        <th>Type</th>
+                        <th>Category</th>
+                        <th>Author</th>
+                        <th>Cost</th>
+                        <th>Amount</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for t in transactions %}
+                    {% if 'highlight' in request.GET and request.GET.highlight|add:0 == t.id %}
+                    <tr bgcolor="#ffe4c4">
+                    {% else %}
+                    <tr>
+                    {% endif %}
+                        <td>
+                            {{ t.id }}
+                        </td>
+                        <td>
+                            {{ t.name }}
+                        </td>
+                        <td>
+                            {{ t.date }}
+                        </td>
+                        <td>
+                            {{ t.type }}
+                        </td>
+                        <td>
+                            {{ t.category }}
+                        </td>
+                        <td>
+                            {{ t.author }}
+                        </td>
+                        <td>
+                            {{ t.cost }}
+                        </td>
+                        <td>
+                            {{ t.amount }}
+                        </td>
+                        <td>
+                            {{ t.description }}
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>No transactions.</p>
+        {% endif %}
+
+        <h3>Technical information</h3>
         <p>
-            <a href="{% url 'index' %}">Main page</a>
+             Request parameters: {{ request.GET }}
         </p>
     </div>
     {% if transactions %}
@@ -77,8 +144,4 @@
         <p>No transactions.</p>
     {% endif %}
 
-    <h3>Technical information</h3>
-    <p>
-         Request parameters: {{ request.GET }}
-    </p>
 {% endblock %}

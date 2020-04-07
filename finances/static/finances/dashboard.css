@@ -1,0 +1,25 @@
+.blnce_side{
+	left:0;
+	width:40%;
+	background-color: white;
+
+}
+.tbl_side{
+	left: 40%;
+	width: 60%;
+	/*background-color: black;*/
+	background-image: url('/static/base/img/tree.jpg');
+	background-attachment: fixed;
+	text-align: center;
+}
+/*.split_right table{
+	top: 40%;
+	width: 100%;
+	position: relative;
+
+
+}*/
+.tbl_side table{
+	position: fixed;
+
+}

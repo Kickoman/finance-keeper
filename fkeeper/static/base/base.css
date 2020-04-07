@@ -24,6 +24,7 @@ table {
 
 .bg_primary{
 	background-color: rgb(20,20,20);
+
 }
 
 .split{
@@ -42,7 +43,6 @@ table {
 	/*margin-left: 15%;*/
 	position: relative;
 	height:30%;
-	/*background-color: white;	*/
 	padding: 50px;
 	text-align: center;
 
@@ -54,14 +54,39 @@ table {
 
 }
 
-.auth input 
+input 
 {
-	width: 40%;
+	width: 200px;
+	height: 30px;
+	font-size: 125%;
+	/*background-color: #ffffb3;*/
+	background-color: white;
+	border: 1px solid  #b2b2b2;
+	border-radius: 3px;
+	
+		
+
+
+	padding-left: 5px;
 }
-.auth button{
-	width: 25%;
-	min-width: 98px;
+button{
+	border: none;
+	height: 35px;
+	width: 70px;
+	color: white;
+	transition-duration: 0.4s;
+	background-color:  #28bd55;
+	font-size: 90%;
 }
+
+
+
+button:hover {
+  background-color: #4a4a49; 
+  color: white;
+}
+
+
 .authors {
 	position: fixed;
 	margin-bottom: 2%;
@@ -95,3 +120,9 @@ table {
 	transform: translateY(-50%);
 	color: white;
 }
+a{
+
+	color:  #28bd55;
+	text-decoration: none;
+}
+/*009a63*/

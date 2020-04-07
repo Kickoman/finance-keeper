@@ -4,6 +4,7 @@ from decimal import Decimal
 
 from django.db.models import Q  # for "or" operator in filters and etc
 
+import datetime
 
 # Create your models here.
 class Account(models.Model):
@@ -48,7 +49,7 @@ class Transaction(models.Model):
         return self.name
 
     name = models.CharField(max_length=100)
-    date = models.DateField('Date executed')
+    date = models.DateField('Date executed', default=datetime.datetime.now)
     type = models.BooleanField('Income')
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE, null=True)

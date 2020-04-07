@@ -1,5 +1,8 @@
-{% extends 'again/base.html' %}
-
+{% extends 'fkeeper/base.html' %}
+{% load static %}
+{% block css %}
+    <link type="text/css" rel="stylesheet" href="{% static "finances/index.css" %}">
+{% endblock %}
 {% block content %}
     {% if user.is_authenticated %}
     <h1>Finance Keeper</h1>

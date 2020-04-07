@@ -1,4 +1,4 @@
-{% extends 'again/base.html' %}
+{% extends 'fkeeper/base.html' %}
 {%block title%}Sign in{%endblock%}
 {% load static %}
 {% block css %}
@@ -16,7 +16,7 @@
                 {% if messages %}
                     {% for message in messages %}
                         <div class="{{ message.tags }}">
-                            <h4>INFO:</h4>
+                            <!-- <h4>INFO:</h4> -->
                             <p>
                                 {{ message }}
                             </p>
@@ -57,7 +57,7 @@
                     {% endfor %}
 
                     <button type="submit">
-                        Sign in
+                        Try
                     </button>
                 </form>
             </div>

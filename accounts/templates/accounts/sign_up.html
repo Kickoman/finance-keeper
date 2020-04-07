@@ -1,10 +1,77 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Registration</title>
-</head>
-<body>
+{% extends 'fkeeper/base.html' %}
+{%block title%}Registration{%endblock%}
+{% load static %}
+
+{% block css %}
+   <style type="text/css">
+        body{
+
+            background-image: url('/static/base/img/tree.jpg');
+        }
+        .content{
+
+            left: 50%;
+            right: 0;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            position: absolute;
+
+            padding: 20px;
+            width: 350px;
+            height: 350px;
+            background-color: rgba(255,255,255,0.9);
+            text-align: center;
+            padding-top: 15px;
+            border-radius: 4px;
+
+        }
+
+  
+        .registration input {
+            width: 200px;
+            height: 30px;
+            font-size: 125%;
+            background-color: white;
+            border: 1px solid  #b2b2b2;
+            border-radius: 3px;
+            padding-left: 5px;
+        }
+
+        .lowheader{
+            margin-top: 3%;
+            left: -5%;
+            transform: translateX(-15%);
+            
+            background-color: rgba(255,255,255,0.2);
+            width: 470px;
+            height: 50px;
+            font-size: 25px;
+            
+
+        }
+
+        .lowheader a{
+            margin-top:50%;
+            transform: translateY(-50%);
+            color: white;
+            position: relative;
+            font-size: 40px;
+            left: 15%;
+
+
+        }
+
+        
+    </style>
+{% endblock %}
+    
+{% block content %}
+    <div class = "lowheader">
+        <!-- <p>Finance Keeper </p> -->
+        <a href="/">Finance Keeper</a>
+    </div>
     <div class="content">
         <h2>Registration</h2>
 
@@ -32,7 +99,7 @@
         {% endif %}
 
 
-        <form method="post" class="form">
+        <form method="post" class="registration">
             {% csrf_token %}
             {% for field in form %}
 
@@ -56,5 +123,4 @@
             </button>
         </form>
     </div>
-</body>
-</html>
+{% endblock %}

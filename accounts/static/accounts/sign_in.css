@@ -50,12 +50,12 @@
 }
 
 body{
-	/*background-color: rgb(20,20,20);*/
-	/*background-color: rgb(40, 40, 40);*/
+	
 	background-image: url('/static/base/img/tree.jpg');
-	/*background-color: rgba(200,200,200,1);*/
+	
 }
-.field_alert{
-	color: red;
-
+.content p{
+	color: #ec2d0f;
+	margin-top: 32px;
+	margin-bottom: 0;
 }
